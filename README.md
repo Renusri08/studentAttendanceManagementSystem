@@ -21,11 +21,6 @@ A server-rendered ASP.NET Core MVC application for managing student attendance. 
 - Install the **SQL Server (mssql)** extension to execute SQL queries.
 - SQL Server and the `sqlcmd` command-line tool.
 
-Check that the .NET SDK is available:
-
-```bash
-dotnet --version
-```
 
 ## Database Configuration
 
@@ -89,18 +84,11 @@ VALUES
 From the project directory, run:
 
 ```bash
-dotnet run --launch-profile http
+dotnet run 
 ```
 
 Open [http://localhost:5171](http://localhost:5171) in your browser.
 
-The HTTPS launch profile is also available:
-
-```bash
-dotnet run --launch-profile https
-```
-
-HTTPS URL: [https://localhost:7164](https://localhost:7164)
 
 ## Application Flow
 
@@ -111,19 +99,6 @@ HTTPS URL: [https://localhost:7164](https://localhost:7164)
 5. **Mark Attendance:** Select Present or Absent for each student.
 6. **Submit Attendance:** Save the attendance records to the database.
 
-For example, selecting the CSE department and second year should display Priya and Rahul from the dummy data.
-
-Attendance is recorded for the current date. The database prevents duplicate attendance records for the same student on the same day.
-
-## Project Structure
-
-- `Controllers/` — Handles application requests.
-- `Data/AppDbContext.cs` — Configures the database and relationships.
-- `Migrations/` — Contains database schema changes.
-- `Models/` — Contains database entity classes.
-- `ViewModels/` — Contains form models and validation rules.
-- `Views/` — Contains Razor views.
-- `wwwroot/` — Contains CSS, JavaScript, and other static files.
 
 ## Technologies Used
 
@@ -137,8 +112,4 @@ Attendance is recorded for the current date. The database prevents duplicate att
 - Cookie-based authentication
 - Git and GitHub
 
-## Configuration Notes
 
-- `appsettings.json` contains general application settings and logging configuration.
-- `appsettings.Development.json` is ignored by Git and can contain local development settings. Do not commit credentials.
-- Entity Framework Core migrations are used to create and update the database schema.
