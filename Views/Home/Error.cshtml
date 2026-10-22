@@ -1,0 +1,22 @@
+@model StudentAttendanceManagement.Models.ErrorViewModel
+@{
+    ViewData["Title"] = "Error";
+}
+
+<div class="container mt-5">
+    <div class="shadow-sm">
+        <h4 class="text-danger mb-3">Something went wrong.</h4>
+        <h5 class="h4 mb-3">An error occurred while processing your request.</h5>
+
+        @if (Model.ShowRequestId)
+        {
+            <p class="mb-0">
+                <strong>Request ID:</strong> <code>@Model.RequestId</code>
+            </p>
+        }
+    </div>
+
+    <div class="mt-3">
+        <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Back to Home</a>
+    </div>
+</div>
