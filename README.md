@@ -12,19 +12,19 @@ A server-rendered ASP.NET Core MVC application for managing student attendance. 
 
 **Windows:**
 - Visual Studio Community
-- Select the **ASP.NET and web development** workload during installation.
+- Select the ASP.NET and web development workload during installation.
 - (Optional) SQL Server Management Studio (SSMS) to manage the database.
 
 **Ubuntu/Linux:**
 - Visual Studio Code
-- Install the **C# Dev Kit** extension.
-- Install the **SQL Server (mssql)** extension to execute SQL queries.
-- SQL Server and the `sqlcmd` command-line tool.
+- Install the C# Dev Kit extension.
+- Install the SQL Server (mssql) extension to execute SQL queries.
+- SQL Server and the sqlcmd command-line tool.
 
 
 ## Database Configuration
 
-The application uses Entity Framework Core with the SQL Server provider. It reads the connection string named `DefaultConnection`.
+The application uses Entity Framework Core with the SQL Server provider. It reads the connection string named DefaultConnection.
 
 For local development, run the following command from the project directory:
 
@@ -57,11 +57,11 @@ Apply the existing migrations:
 dotnet ef database update
 ```
 
-This creates or updates the database tables: `Users`, `Departments`, `Students`, and `Attendance`.
+This creates or updates the database tables: Users, Departments, Students, and Attendance.
 
 ## Insert Dummy Data
 
-After applying the migrations, connect to the `StudentAttendanceManagement` database and execute the following SQL script.
+After applying the migrations, connect to the StudentAttendanceManagement database and execute the following SQL script.
 
 ```sql
 INSERT INTO Departments (DepartmentName, IsActive)
@@ -77,7 +77,7 @@ VALUES
     ('ECE002', 'Kiran',     8, 4, 1);
 ```
 
-**Note:** This script assumes that CSE has `DepartmentId = 7` and ECE has `DepartmentId = 8`. Check the actual IDs in your database before running the script. If the IDs are different, update them accordingly.
+**Note:** This script assumes that CSE has DepartmentId = 7 and ECE has DepartmentId = 8. Check the actual IDs in your database before running the script. If the IDs are different, update them accordingly.
 
 ## Run the Application
 
