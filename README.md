@@ -35,7 +35,6 @@ dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Server=localhost;
 
 Replace the login and password with your SQL Server credentials. If User Secrets has already been initialized, skip the first command.
 
-Do not commit database credentials to GitHub.
 
 ## Create or Update the Database
 
