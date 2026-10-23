@@ -17,6 +17,7 @@
         <p><strong>Roll Number</strong>@Model.RollNumber</p>
         <p><strong>Department</strong>@Model.DepartmentName</p>
         <p><strong>Year</strong>@Model.YearOfStudy</p>
+        <p><strong>Attendance Date</strong>@DateTime.Today.ToString("dddd, dd MMMM yyyy")</p>
     </div>
 
     <form asp-controller="Attendance"
@@ -42,7 +43,8 @@
         </button>
     </form>
 
-    <a asp-controller="Attendance" asp-action="Index" class="btn btn-link mt-3 px-0">
+    <a asp-controller="Attendance" asp-action="Index"  asp-route-departmentName="@Model.DepartmentName"
+   asp-route-yearOfStudy="@Model.YearOfStudy" class="btn btn-link mt-3 px-0">
         Back to Student List
     </a>
 </div>

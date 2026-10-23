@@ -80,6 +80,23 @@ public class AttendanceController : Controller
             return NotFound();
         }
 
+        bool alreadySubmitted = await _context.Attendance
+            .AnyAsync(a =>
+                a.StudentId == student.StudentId &&
+                a.AttendanceDate == DateTime.Today);
+
+        if (alreadySubmitted)
+        {
+            TempData["DuplicateAttendanceMessage"] =
+                "Attendance for this student has already been submitted today.";
+
+            return RedirectToAction(nameof(Index), new
+            {
+                departmentName = student.Department.DepartmentName,
+                yearOfStudy = student.YearOfStudy
+            });
+        }
+
         var model = new MarkAttendanceViewModel
         {
             StudentId = student.StudentId,
@@ -106,6 +123,24 @@ public class AttendanceController : Controller
         if (student == null)
         {
             return NotFound();
+        }
+
+        var today = DateTime.Today;
+        bool alreadySubmitted = await _context.Attendance
+            .AnyAsync(a =>
+                a.StudentId == student.StudentId &&
+                a.AttendanceDate == today);
+
+        if (alreadySubmitted)
+        {
+            TempData["DuplicateAttendanceMessage"] =
+                "Attendance for this student has already been submitted today.";
+
+            return RedirectToAction(nameof(Index), new
+            {
+                departmentName = student.Department.DepartmentName,
+                yearOfStudy = student.YearOfStudy
+            });
         }
 
         // Validate the attendance status.
@@ -136,27 +171,6 @@ public class AttendanceController : Controller
         if (!int.TryParse(userIdValue, out int userId))
         {
             return Forbid();
-        }
-
-        // Determine today's date.
-        var today = DateTime.Today;
-
-        // Check for an existing attendance record.
-        bool alreadySubmitted = await _context.Attendance
-            .AnyAsync(a =>
-                a.StudentId == student.StudentId &&
-                a.AttendanceDate == today);
-
-        if (alreadySubmitted)
-        {
-            TempData["DuplicateAttendanceMessage"] =
-                "Attendance for this student has already been submitted today.";
-
-            return RedirectToAction(nameof(Index), new
-            {
-                departmentName = student.Department.DepartmentName,
-                yearOfStudy = student.YearOfStudy
-            });
         }
 
         // Create the attendance record.
